@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const Header = styled.View`
   padding: 25px;
   flex-direction: row;
+  margin-right: 100px;
 `;
 
 export const LeftHeader = styled.View`
@@ -18,7 +19,7 @@ export const Icon = styled.Image`
 `;
 
 export const Center = styled.View`
-  max-width: 75%;
+  max-width: 70%;
   line-height: 31px;
 `;
 
