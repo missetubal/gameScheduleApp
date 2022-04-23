@@ -20,3 +20,7 @@ export const Images = styled.View`
 `;
 
 export const LoginImage = styled.Image``;
+
+export const ButtonsView = styled.View`
+  align-items: center;
+`;

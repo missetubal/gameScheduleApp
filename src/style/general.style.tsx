@@ -11,7 +11,7 @@ export const View = styled.View`
 
 export const Text = styled.Text<GeneralStyleProps>`
     color: ${props => props.color || '#dde3f0'}
-  text-align: center;
+  text-align: ${props => props.textAlign || 'center'};
   margin-left: ${props => props.marginLeft || 0}px;
   margin-right: ${props => props.marginRight || 0}px;
   margin-top: ${props => props.marginTop || 0}px;
@@ -24,14 +24,16 @@ export const Text = styled.Text<GeneralStyleProps>`
 export const Button = styled.TouchableOpacity<GeneralStyleProps>`
   background-color: ${props => props.backgroundColor || 'transparent'}
   text-align: ${props => props.textAlign || 'center'};
+  align-items: ${props => props.alignItems || 'center'};
   justify-content: ${props => props.justifyContent || 'center'};
-  margin-left: ${props => props.marginLeft || 50}px;
-  margin-right: ${props => props.marginRight || 50}px;
+  margin-left: ${props => props.marginLeft || 0}px;
+  margin-right: ${props => props.marginRight || 0}px;
   margin-top: ${props => props.marginTop || 0}px;
   margin-bottom: ${props => props.marginBottom || 0}px;
   font-size: ${props => props.fontSize || 15}px;
   font-weight: ${props => props.fontWeight || 400};
   height: ${props => props.height || 58}px;
+  width:${props => props.width || 274}px;
   border-radius: ${props => props.borderRadius || 8}px;
 `;
 
