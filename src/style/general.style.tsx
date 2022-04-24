@@ -2,10 +2,10 @@ import styled from 'styled-components/native';
 import {GeneralStyleProps} from '../types/general.types';
 import colors from './colors';
 
-export const View = styled.View`
+export const View = styled.View<GeneralStyleProps>`
   background-color: ${props => props.color || '#0c123b'};
   flex: 1;
-  padding-top: ${props => props.paddinTop || 50}px;
+  padding-top: ${props => props.paddingTop || 50}px;
   padding-left: ${props => props.paddingLeft || 0}px;
 `;
 

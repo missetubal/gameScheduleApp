@@ -4,6 +4,7 @@ export const Header = styled.View`
   padding: 25px;
   flex-direction: row;
   margin-right: 100px;
+  margin-bottom: 20px;
 `;
 
 export const LeftHeader = styled.View`
@@ -25,4 +26,8 @@ export const Center = styled.View`
 
 export const NameTitle = styled.View`
   flex-direction: row;
+`;
+
+export const List = styled.ScrollView`
+  padding-left: 24px;
 `;
