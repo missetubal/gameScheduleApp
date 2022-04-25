@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {GeneralStyleProps} from '../types/general.types';
 import colors from './colors';
 
-export const View = styled.View<GeneralStyleProps>`
+export const View = styled.ScrollView<GeneralStyleProps>`
   background-color: ${props => props.color || '#0c123b'};
   flex: 1;
   padding-top: ${props => props.paddingTop || 50}px;
@@ -43,6 +43,7 @@ export const Title = styled.Text<GeneralStyleProps>`
   font-size: ${props => props.fontSize || 40}px;
   text-align: ${props => props.textAlign || 'center'};
   margin-top: ${props => props.marginTop || 0}px;
+  margin-left: ${props => props.marginLeft || 0}px;
   margin-bottom: ${props => props.marginBottom || 0}px;
 `;
 

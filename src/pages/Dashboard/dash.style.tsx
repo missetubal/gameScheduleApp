@@ -28,6 +28,15 @@ export const NameTitle = styled.View`
   flex-direction: row;
 `;
 
-export const List = styled.ScrollView`
+export const CategoryList = styled.ScrollView`
+  padding-left: ${props => props.paddingLeft || 24}px;
+  margin-bottom: ${props => props.marginBottom || 0}px;
+`;
+
+export const TextView = styled.View`
+  flex-direction: row;
   padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 40px;
+  justify-content: space-between;
 `;

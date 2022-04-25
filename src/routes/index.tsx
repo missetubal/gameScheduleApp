@@ -6,6 +6,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../pages/Home/home.screen';
 import Dashboard from '../pages/Dashboard/dash.screen';
 import Login from '../pages/Login/login.screen';
+import NewMatch from '../pages/NewMatch/newMatch.screen';
+import colors from '../style/colors';
 
 const Stack = createNativeStackNavigator();
 const Routes: React.FC = () => {
@@ -26,6 +28,17 @@ const Routes: React.FC = () => {
           name="Dashboard"
           component={Dashboard}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Agendar Partida"
+          component={NewMatch}
+          options={{
+            headerShown: true,
+            headerBackButtonMenuEnabled: true,
+            headerStyle: {backgroundColor: colors.card},
+            headerTitleStyle: {color: colors.gray},
+            headerBackTitleVisible: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

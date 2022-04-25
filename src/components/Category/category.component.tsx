@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Checklist} from '../../pages/NewMatch/newMatch.style';
 import colors from '../../style/colors';
-import {Title, View} from '../../style/general.style';
+import {Title} from '../../style/general.style';
 import {Container, Image} from './category.style';
 import CategoryProps from './category.types';
 
 const Categories: React.FC<CategoryProps> = props => {
+  const [hasChecked, setHasChecked] = useState(false);
   return (
-    <View paddingTop={1}>
-      <Container backgroundColor={colors.card}>
-        <Image source={props.image} />
-        <Title fontSize={15} marginBottom={17}>
-          {props.name}
-        </Title>
-      </Container>
-    </View>
+    <Container
+      backgroundColor={colors.card}
+      onPress={() => setHasChecked(!hasChecked)}>
+      {props.isChecked && (
+        <Checklist backgroundColor={hasChecked ? colors.redish : colors.card} />
+      )}
+      <Image source={props.image} />
+      <Title fontSize={15} marginBottom={17}>
+        {props.name}
+      </Title>
+    </Container>
   );
 };
 

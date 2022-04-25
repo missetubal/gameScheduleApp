@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 
   return (
     <View paddingLeft={20}>
-      <Button marginLeft={-5} onPress={() => navigation.goBack()}>
+      <Button marginLeft={-120} onPress={() => navigation.goBack()}>
         <LeftArrow />
       </Button>
       <Circle backgroundColor={colors.redish} />

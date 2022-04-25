@@ -1,12 +1,21 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Add} from '../../assets/add';
 import Categories from '../../components/Category/category.component';
 import colors from '../../style/colors';
 import {Button, Text, Title, View} from '../../style/general.style';
-import {Center, Header, Icon, LeftHeader, List, NameTitle} from './dash.style';
-// import { Container } from './styles';
+import {
+  Center,
+  Header,
+  Icon,
+  LeftHeader,
+  CategoryList,
+  NameTitle,
+  TextView,
+} from './dash.style';
 
 const Dashboard: React.FC = ({route}) => {
+  const navigation = useNavigation();
   return (
     <View padding={24}>
       <Header>
@@ -26,11 +35,12 @@ const Dashboard: React.FC = ({route}) => {
           marginLeft={80}
           width={50}
           height={50}
-          backgroundColor={colors.redish}>
+          backgroundColor={colors.redish}
+          onPress={() => navigation.navigate('Agendar Partida')}>
           <Add />
         </Button>
       </Header>
-      <List horizontal>
+      <CategoryList horizontal showsHorizontalScrollIndicator={false}>
         <Categories
           name="Ranqueada"
           image={require('../../assets/ranqueada.png')}
@@ -41,7 +51,11 @@ const Dashboard: React.FC = ({route}) => {
           image={require('../../assets/diversao.png')}
         />
         <Categories />
-      </List>
+      </CategoryList>
+      <TextView>
+        <Title fontSize={18}>Partidas Agendadas</Title>
+        <Text>Total:</Text>
+      </TextView>
     </View>
   );
 };
