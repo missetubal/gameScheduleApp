@@ -3,10 +3,19 @@ import {FlatList, ScrollViewBase} from 'react-native';
 import {ArrowRight} from '../../assets/arrowRight';
 import Categories from '../../components/Category/category.component';
 import ServerComponent from '../../components/servers/server.component';
+import {ArrowView, Image} from '../../components/servers/server.style';
 import {Servers} from '../../helpers/servers';
-import {Button, Title, View} from '../../style/general.style';
+import colors from '../../style/colors';
+import {Text, Title, View} from '../../style/general.style';
 import {CategoryList} from '../Dashboard/dash.style';
-import {Icon, ModalServer, ServerButton, ServerView} from './newMatch.style';
+import {
+  Icon,
+  IconView,
+  ModalServer,
+  ServerButton,
+  ServerText,
+  ServerView,
+} from './newMatch.style';
 
 const NewMatch: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +26,8 @@ const NewMatch: React.FC = () => {
       <ModalServer
         visible={isVisible}
         animationType="slide"
-        presentationStyle={'formSheet'}>
+        presentationStyle={'formSheet'}
+        onRequestClose={() => setIsVisible(!isVisible)}>
         <View>
           <FlatList
             data={Servers}
@@ -26,8 +36,8 @@ const NewMatch: React.FC = () => {
                 <ServerButton
                   onPress={() => {
                     setServerChosen(item);
-                    setIsVisible(false);
-                    // console.log('visible?', serverChosen);
+                    setIsVisible(!isVisible);
+                    console.log('visible?', item);
                   }}>
                   <ServerComponent
                     name={item.name}
@@ -65,14 +75,36 @@ const NewMatch: React.FC = () => {
         />
         <Categories />
       </CategoryList>
-      <ServerView>
-        <Icon />
-        <Title fontSize={18} textAlign={'center'}>
-          Selecione um servidor
-        </Title>
-        <Button width={6} marginRight={34} onPress={() => setIsVisible(true)}>
+      <ServerView onPress={() => setIsVisible(!isVisible)}>
+        <IconView>
+          {serverChosen ? (
+            <Image source={{uri: serverChosen.image}} />
+          ) : (
+            <Icon />
+          )}
+        </IconView>
+        <ServerText>
+          {serverChosen ? (
+            <Title fontSize={18} textAlign={'left'}>
+              {serverChosen.name}
+            </Title>
+          ) : (
+            <Title fontSize={18} textAlign={'left'}>
+              Selecione um servidor
+            </Title>
+          )}
+          {serverChosen ? (
+            <Text textAlign={'left'} color={colors.gray}>
+              {serverChosen.gameName}
+            </Text>
+          ) : (
+            <Text> </Text>
+          )}
+        </ServerText>
+
+        <ArrowView right={8} top={50}>
           <ArrowRight />
-        </Button>
+        </ArrowView>
       </ServerView>
     </View>
   );

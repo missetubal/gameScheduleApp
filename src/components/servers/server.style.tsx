@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.View`
   height: 92px;
   width: 100%;
   padding: 24px;
@@ -18,6 +18,7 @@ export const Content = styled.View`
 export const Image = styled.Image`
   width: 64px;
   height: 68px;
+  border-radius: 8px;
 `;
 
 export const TextView = styled.View`
@@ -29,8 +30,8 @@ export const TextView = styled.View`
 
 export const ArrowView = styled.View`
   position: absolute;
-  right: 2%;
-  top: 54%;
+  right: ${props => props.right || 2}%;
+  top: ${props => props.top || 54}%;
 `;
 
 export const Line = styled.View`
