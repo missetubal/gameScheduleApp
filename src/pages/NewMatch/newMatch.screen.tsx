@@ -9,8 +9,12 @@ import colors from '../../style/colors';
 import {Text, Title, View} from '../../style/general.style';
 import {CategoryList} from '../Dashboard/dash.style';
 import {
+  DateView,
+  DayAndHour,
   Icon,
   IconView,
+  Input,
+  InputView,
   ModalServer,
   ServerButton,
   ServerText,
@@ -22,7 +26,7 @@ const NewMatch: React.FC = () => {
   const [serverChosen, setServerChosen] = useState(null);
 
   return (
-    <View backgroundColor={'#0c123b'}>
+    <View backgroundColor={'#0c123b'} paddingLeft={24} paddingRight={24}>
       <ModalServer
         visible={isVisible}
         animationType="slide"
@@ -50,13 +54,12 @@ const NewMatch: React.FC = () => {
           />
         </View>
       </ModalServer>
-      <Title fontSize={18} textAlign={'left'} marginLeft={24} marginBottom={15}>
+      <Title fontSize={18} textAlign={'left'} marginBottom={15}>
         Categorias
       </Title>
       <CategoryList
         horizontal
         showsHorizontalScrollIndicator={false}
-        paddingLeft={24}
         marginBottom={32}>
         <Categories
           name="Ranqueada"
@@ -106,6 +109,38 @@ const NewMatch: React.FC = () => {
           <ArrowRight />
         </ArrowView>
       </ServerView>
+      <DateView>
+        <DayAndHour>
+          <Title fontSize={18} textAlign={'left'}>
+            Dia e Mês
+          </Title>
+          <InputView>
+            <Input marginRight={6} />
+            <Text>/</Text>
+            <Input marginLeft={6} />
+          </InputView>
+        </DayAndHour>
+        <DayAndHour>
+          <Title fontSize={18} textAlign={'left'}>
+            Horário
+          </Title>
+          <InputView>
+            <Input marginRight={6} />
+            <Text>:</Text>
+            <Input marginLeft={6} />
+          </InputView>
+        </DayAndHour>
+      </DateView>
+      <Title fontSize={18} textAlign={'left'} marginBottom={12}>
+        Descrição
+      </Title>
+      <Input
+        width={328}
+        height={95}
+        textAlign={'left'}
+        padding={8}
+        justifyContent={'flex-start'}
+      />
     </View>
   );
 };

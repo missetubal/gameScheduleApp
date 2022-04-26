@@ -7,6 +7,7 @@ export const View = styled.ScrollView<GeneralStyleProps>`
   flex: 1;
   padding-top: ${props => props.paddingTop || 50}px;
   padding-left: ${props => props.paddingLeft || 0}px;
+  padding-right: ${props => props.paddingRight || 0}px;
 `;
 
 export const Text = styled.Text<GeneralStyleProps>`
