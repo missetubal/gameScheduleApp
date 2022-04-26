@@ -27,3 +27,13 @@ export const Checklist = styled(Button)`
   right: 5px;
   top: 5px;
 `;
+
+export const ModalServer = styled.Modal``;
+export const ServerButton = styled.TouchableOpacity``;
+export const Line = styled.View`
+  position: absolute;
+  right: 0;
+  width: 267px;
+  background-color: #1d2766;
+  height: 1px;
+`;

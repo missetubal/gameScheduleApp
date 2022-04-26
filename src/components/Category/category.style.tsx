@@ -18,3 +18,5 @@ export const Image = styled.Image`
   width: ${props => props.width || 48}px;
   height: ${props => props.height || 48}px;
 `;
+
+export const Pressed = styled.View``;
