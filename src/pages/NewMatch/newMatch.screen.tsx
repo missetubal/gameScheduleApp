@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {FlatList, ScrollViewBase} from 'react-native';
+import {FlatList} from 'react-native';
 import {ArrowRight} from '../../assets/arrowRight';
 import Categories from '../../components/Category/category.component';
 import ServerComponent from '../../components/servers/server.component';
 import {ArrowView, Image} from '../../components/servers/server.style';
 import {Servers} from '../../helpers/servers';
 import colors from '../../style/colors';
-import {Text, Title, View} from '../../style/general.style';
+import {Button, Text, Title, View} from '../../style/general.style';
 import {CategoryList} from '../Dashboard/dash.style';
 import {
   DateView,
@@ -24,6 +24,14 @@ import {
 const NewMatch: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [serverChosen, setServerChosen] = useState(null);
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [hour, setHour] = useState('');
+  const [minute, setMinute] = useState('');
+  const [description, setDescription] = useState('');
+
+  const isDisabled =
+    !day || !hour || !minute || !description || !month || !serverChosen;
 
   return (
     <View backgroundColor={'#0c123b'} paddingLeft={24} paddingRight={24}>
@@ -41,7 +49,6 @@ const NewMatch: React.FC = () => {
                   onPress={() => {
                     setServerChosen(item);
                     setIsVisible(!isVisible);
-                    console.log('visible?', item);
                   }}>
                   <ServerComponent
                     name={item.name}
@@ -115,9 +122,9 @@ const NewMatch: React.FC = () => {
             Dia e Mês
           </Title>
           <InputView>
-            <Input marginRight={6} />
+            <Input marginRight={6} onChangeText={value => setDay(value)} />
             <Text>/</Text>
-            <Input marginLeft={6} />
+            <Input marginLeft={6} onChangeText={value => setMonth(value)} />
           </InputView>
         </DayAndHour>
         <DayAndHour>
@@ -125,9 +132,9 @@ const NewMatch: React.FC = () => {
             Horário
           </Title>
           <InputView>
-            <Input marginRight={6} />
+            <Input marginRight={6} onChangeText={value => setHour(value)} />
             <Text>:</Text>
-            <Input marginLeft={6} />
+            <Input marginLeft={6} onChangeText={value => setMinute(value)} />
           </InputView>
         </DayAndHour>
       </DateView>
@@ -135,12 +142,27 @@ const NewMatch: React.FC = () => {
         Descrição
       </Title>
       <Input
-        width={328}
+        width={340}
+        multiline
+        numbersOfLine={10}
         height={95}
+        textAlignVertical={'top'}
         textAlign={'left'}
         padding={8}
-        justifyContent={'flex-start'}
+        color={colors.white}
+        onChangeText={value => setDescription(value)}
       />
+      <InputView>
+        <Button
+          backgroundColor={isDisabled ? colors.buttonDisabled : colors.redish}
+          marginTop={20}
+          width={340}
+          disabled={isDisabled}>
+          <Title fontSize={18} color={isDisabled ? colors.gray : colors.white}>
+            Agendar
+          </Title>
+        </Button>
+      </InputView>
     </View>
   );
 };

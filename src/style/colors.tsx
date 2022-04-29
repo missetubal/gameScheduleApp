@@ -5,4 +5,5 @@ export default {
   gray: '#ABB1CC',
   cardGradient: ['#243189', '#1B2565'],
   card: '#171F52',
+  buttonDisabled: '#641f2d',
 };

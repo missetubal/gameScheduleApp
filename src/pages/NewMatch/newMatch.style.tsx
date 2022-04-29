@@ -14,7 +14,8 @@ export const ServerText = styled.View`
   text-align: left;
   padding-top: 12px;
   padding-bottom: 12px;
-  justify-content: left;
+  /* background-color: red; */
+  /* justify-content: left; */
 `;
 export const Icon = styled.Image`
   width: 64px;
@@ -24,7 +25,7 @@ export const Icon = styled.Image`
 `;
 
 export const IconView = styled.ImageBackground`
-  margin-right: 35px;
+  margin-right: 20px;
 `;
 
 export const Checklist = styled(Button)`
@@ -59,6 +60,7 @@ export const Input = styled.TextInput`
   margin-left: ${props => props.marginLeft || 0}px;
   text-align: ${props => props.textAlign || 'center'};
   padding: ${props => props.padding || 0}px;
+  color: ${props => props.color || '#dde3f0'};
 `;
 export const InputView = styled.View`
   flex-direction: row;

@@ -8,6 +8,7 @@ export const View = styled.ScrollView<GeneralStyleProps>`
   padding-top: ${props => props.paddingTop || 50}px;
   padding-left: ${props => props.paddingLeft || 0}px;
   padding-right: ${props => props.paddingRight || 0}px;
+  /* align-items: ${props => props.alignItems || ''}; */
 `;
 
 export const Text = styled.Text<GeneralStyleProps>`
@@ -39,7 +40,7 @@ export const Button = styled.TouchableOpacity<GeneralStyleProps>`
 `;
 
 export const Title = styled.Text<GeneralStyleProps>`
-  color: ${props => props.Color || '#dde3f0'};
+  color: ${props => props.color || '#dde3f0'};
   font-weight: ${props => props.fontWeight || 700};
   font-size: ${props => props.fontSize || 40}px;
   text-align: ${props => props.textAlign || 'center'};
