@@ -1,4 +1,4 @@
-export const Servers = [
+export const ServerTypes = [
   {
     name: 'Lendários',
     gameName: 'League of Legends',
