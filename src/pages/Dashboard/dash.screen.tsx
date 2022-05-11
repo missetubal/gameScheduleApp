@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Add} from '../../assets/add';
 import Categories from '../../components/Category/category.component';
+import {CategoryTipes} from '../../constants/CategoryTypes';
 import colors from '../../style/colors';
 import {Button, Text, Title, View} from '../../style/general.style';
 import {
@@ -41,16 +42,7 @@ const Dashboard: React.FC = ({route}) => {
         </Button>
       </Header>
       <CategoryList horizontal showsHorizontalScrollIndicator={false}>
-        <Categories
-          name="Ranqueada"
-          image={require('../../assets/ranqueada.png')}
-        />
-        <Categories name="Duelo" image={require('../../assets/duelo.png')} />
-        <Categories
-          name="Diversão"
-          image={require('../../assets/diversao.png')}
-        />
-        <Categories />
+        <Categories data={CategoryTipes} needCheck={false} />
       </CategoryList>
       <TextView>
         <Title fontSize={18}>Partidas Agendadas</Title>

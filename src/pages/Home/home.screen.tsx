@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         </Button>
         <Button
           onPress={() => navigation.navigate('Register')}
-          backgroundColor={'transparent'}
+          backgroundColor={colors.transparent}
           justifyContent={'flex-start'}
           marginTop={5}>
           <Text fontWeight={600}>Criar conta</Text>

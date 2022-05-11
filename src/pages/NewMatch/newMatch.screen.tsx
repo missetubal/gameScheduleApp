@@ -4,10 +4,11 @@ import {ArrowRight} from '../../assets/arrowRight';
 import Categories from '../../components/Category/category.component';
 import ServerComponent from '../../components/servers/server.component';
 import {ArrowView, Image} from '../../components/servers/server.style';
-import {Servers} from '../../helpers/servers';
+import {CategoryTipes} from '../../constants/CategoryTypes';
 import colors from '../../style/colors';
 import {Button, Text, Title, View} from '../../style/general.style';
 import {CategoryList} from '../Dashboard/dash.style';
+import {ServerTypes} from '../../constants/ServerTypes';
 import {
   DateView,
   DayAndHour,
@@ -20,6 +21,7 @@ import {
   ServerText,
   ServerView,
 } from './newMatch.style';
+import {useNavigation} from '@react-navigation/native';
 
 const NewMatch: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,10 +31,15 @@ const NewMatch: React.FC = () => {
   const [hour, setHour] = useState('');
   const [minute, setMinute] = useState('');
   const [description, setDescription] = useState('');
+  const [categoryType, setCategoryType] = useState(Number(CategoryTipes[0].id));
+  const navigation = useNavigation();
 
   const isDisabled =
     !day || !hour || !minute || !description || !month || !serverChosen;
 
+  const onSelectButton = (value: number) => {
+    setCategoryType(value);
+  };
   return (
     <View backgroundColor={'#0c123b'} paddingLeft={24} paddingRight={24}>
       <ModalServer
@@ -42,7 +49,7 @@ const NewMatch: React.FC = () => {
         onRequestClose={() => setIsVisible(!isVisible)}>
         <View>
           <FlatList
-            data={Servers}
+            data={ServerTypes}
             renderItem={({item}) => {
               return (
                 <ServerButton
@@ -65,25 +72,16 @@ const NewMatch: React.FC = () => {
         Categorias
       </Title>
       <CategoryList
+        paddingLeft={-24}
         horizontal
         showsHorizontalScrollIndicator={false}
         marginBottom={32}>
         <Categories
-          name="Ranqueada"
-          image={require('../../assets/ranqueada.png')}
-          isChecked
+          selected={categoryType}
+          needCheck={true}
+          data={CategoryTipes}
+          onPress={onSelectButton}
         />
-        <Categories
-          name="Duelo"
-          image={require('../../assets/duelo.png')}
-          isChecked
-        />
-        <Categories
-          name="Diversão"
-          image={require('../../assets/diversao.png')}
-          isChecked
-        />
-        <Categories />
       </CategoryList>
       <ServerView onPress={() => setIsVisible(!isVisible)}>
         <IconView>
@@ -122,9 +120,17 @@ const NewMatch: React.FC = () => {
             Dia e Mês
           </Title>
           <InputView>
-            <Input marginRight={6} onChangeText={value => setDay(value)} />
+            <Input
+              marginRight={6}
+              maxLength={2}
+              onChangeText={value => setDay(value)}
+            />
             <Text>/</Text>
-            <Input marginLeft={6} onChangeText={value => setMonth(value)} />
+            <Input
+              marginLeft={6}
+              maxLength={2}
+              onChangeText={value => setMonth(value)}
+            />
           </InputView>
         </DayAndHour>
         <DayAndHour>
@@ -132,9 +138,17 @@ const NewMatch: React.FC = () => {
             Horário
           </Title>
           <InputView>
-            <Input marginRight={6} onChangeText={value => setHour(value)} />
+            <Input
+              marginRight={6}
+              maxLength={2}
+              onChangeText={value => setHour(value)}
+            />
             <Text>:</Text>
-            <Input marginLeft={6} onChangeText={value => setMinute(value)} />
+            <Input
+              marginLeft={6}
+              maxLength={2}
+              onChangeText={value => setMinute(value)}
+            />
           </InputView>
         </DayAndHour>
       </DateView>
@@ -157,7 +171,17 @@ const NewMatch: React.FC = () => {
           backgroundColor={isDisabled ? colors.buttonDisabled : colors.redish}
           marginTop={20}
           width={340}
-          disabled={isDisabled}>
+          disabled={isDisabled}
+          onPress={() =>
+            navigation.navigate('Dashboard', {
+              category: categoryType,
+              serverChosen: serverChosen,
+              day: day,
+              month: month,
+              hour: hour,
+              minute: minute,
+            })
+          }>
           <Title fontSize={18} color={isDisabled ? colors.gray : colors.white}>
             Agendar
           </Title>

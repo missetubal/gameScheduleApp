@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import {GeneralStyleProps} from '../types/general.types';
-import colors from './colors';
 
 export const View = styled.ScrollView<GeneralStyleProps>`
   background-color: ${props => props.color || '#0c123b'};
@@ -8,7 +7,6 @@ export const View = styled.ScrollView<GeneralStyleProps>`
   padding-top: ${props => props.paddingTop || 50}px;
   padding-left: ${props => props.paddingLeft || 0}px;
   padding-right: ${props => props.paddingRight || 0}px;
-  /* align-items: ${props => props.alignItems || ''}; */
 `;
 
 export const Text = styled.Text<GeneralStyleProps>`
@@ -51,13 +49,13 @@ export const Title = styled.Text<GeneralStyleProps>`
 
 export const TextInput = styled.TextInput`
   border-bottom-width: ${props => props.borderBottomWidth || 1}px;
-  border-color: ${props => props.borderColor || colors.white};
+  border-color: ${props => props.borderColor || '#dde3f0'};
   margin-top: ${props => props.marginTop || 10}px;
   margin-bottom: ${props => props.marginBottom || 0}px;
   margin-left: ${props => props.marginLeft || 10}px;
   margin-right: ${props => props.marginRight || 50}px;
   font-size: ${props => props.fontSize || 16}px;
   height: ${props => props.height || 40}px;
-  color: ${props => props.color || colors.white};
+  color: ${props => props.color || '#dde3f0'};
   padding-left: ${props => props.paddingLeft || 5}px;
 `;
