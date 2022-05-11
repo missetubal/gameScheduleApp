@@ -31,14 +31,16 @@ const NewMatch: React.FC = () => {
   const [hour, setHour] = useState('');
   const [minute, setMinute] = useState('');
   const [description, setDescription] = useState('');
-  const [categoryType, setCategoryType] = useState(Number(CategoryTipes[0].id));
+  const [categoryType, setCategoryType] = useState(
+    String(CategoryTipes[0].name),
+  );
   const navigation = useNavigation();
 
   const isDisabled =
     !day || !hour || !minute || !description || !month || !serverChosen;
 
   const onSelectButton = (value: number) => {
-    setCategoryType(value);
+    setCategoryType(String(CategoryTipes[value].name));
   };
   return (
     <View backgroundColor={'#0c123b'} paddingLeft={24} paddingRight={24}>
@@ -77,7 +79,6 @@ const NewMatch: React.FC = () => {
         showsHorizontalScrollIndicator={false}
         marginBottom={32}>
         <Categories
-          selected={categoryType}
           needCheck={true}
           data={CategoryTipes}
           onPress={onSelectButton}

@@ -5,15 +5,10 @@ export const Container = styled.View`
   width: 100%;
   padding: 24px;
   margin-bottom: 5px;
-
-  /* align-items: center; */
 `;
 export const Content = styled.View`
   padding: 12px 0px;
   flex-direction: row;
-  /* border-bottom: 1px solid red; */
-  /* border: 1px solid white; */
-  /* justify-content: space-between; */
 `;
 export const Image = styled.Image`
   width: 64px;

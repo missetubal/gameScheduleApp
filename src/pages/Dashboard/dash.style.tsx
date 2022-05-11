@@ -39,4 +39,5 @@ export const TextView = styled.View`
   padding-right: 24px;
   margin-top: 40px;
   justify-content: space-between;
+  margin-bottom: 33px;
 `;

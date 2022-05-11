@@ -1,6 +1,6 @@
-export type Category = 'ranqueada' | 'duelo' | 'diversao' | 'teste';
+// export type Category = 'ranqueada' | 'duelo' | 'diversao' | 'teste';
 export default interface CategoryDataProps {
-  id: number;
+  // id: number;
   name?: string;
   image?: string;
   type?: string;
@@ -10,6 +10,5 @@ export default interface CategoryDataProps {
 export interface CategoryChoosenProps {
   data: CategoryDataProps[];
   onPress: (id: number) => void;
-  selected: boolean | number;
   needCheck?: boolean;
 }
