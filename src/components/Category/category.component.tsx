@@ -6,12 +6,10 @@ import {Container, Image} from './category.style';
 import {CategoryChoosenProps} from './category.types';
 
 const Categories: React.FC<CategoryChoosenProps> = props => {
-  const {data} = props;
-  const selectDataTypeButton = (index: number) => {
-    data[index].isChecked = hasChecked;
-  };
+  const {data, onPress} = props;
+  const selectDataTypeButton = (id: number) => onPress(id);
 
-  const [hasChecked, setHasChecked] = useState(false);
+  const [hasChecked, setHasChecked] = useState(data[0].name);
   return (
     <>
       {data.map((value, index) => (
@@ -19,14 +17,15 @@ const Categories: React.FC<CategoryChoosenProps> = props => {
           backgroundColor={colors.card}
           key={index}
           onPress={() => {
-            setHasChecked(!hasChecked);
-            selectDataTypeButton(index);
+            setHasChecked(value.name);
+            selectDataTypeButton(value.id);
           }}
+          extraData={selectDataTypeButton}
           opacity={value.isChecked ? 0 : 0.5}>
           {props.needCheck ? (
             <Checklist
               backgroundColor={
-                data[index].isChecked ? colors.redish : colors.card
+                hasChecked === value.name ? colors.redish : colors.card
               }
             />
           ) : null}

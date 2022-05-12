@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useState} from 'react';
 import {Add} from '../../assets/add';
 import Categories from '../../components/Category/category.component';
 import Match from '../../components/Match/match.component';
@@ -18,6 +18,7 @@ import {
 
 const Dashboard: React.FC = ({route}) => {
   const navigation = useNavigation();
+  const [selectedId, setSelectedId] = useState(null);
   return (
     <View padding={24}>
       <Header>
@@ -43,7 +44,11 @@ const Dashboard: React.FC = ({route}) => {
         </Button>
       </Header>
       <CategoryList horizontal showsHorizontalScrollIndicator={false}>
-        <Categories data={CategoryTipes} needCheck={false} />
+        <Categories
+          data={CategoryTipes}
+          needCheck={false}
+          onPress={() => setSelectedId(selectedId)}
+        />
       </CategoryList>
       <TextView>
         <Title fontSize={18}>Partidas Agendadas</Title>

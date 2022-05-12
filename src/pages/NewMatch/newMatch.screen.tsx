@@ -37,7 +37,16 @@ const NewMatch: React.FC = () => {
   const navigation = useNavigation();
 
   const isDisabled =
-    !day || !hour || !minute || !description || !month || !serverChosen;
+    !day ||
+    day > '31' ||
+    !hour ||
+    hour > '24' ||
+    !minute ||
+    minute > '60' ||
+    !description ||
+    !month ||
+    month > '12' ||
+    !serverChosen;
 
   const onSelectButton = (value: number) => {
     setCategoryType(String(CategoryTipes[value].name));
@@ -124,6 +133,7 @@ const NewMatch: React.FC = () => {
             <Input
               marginRight={6}
               maxLength={2}
+              maxValue={31}
               onChangeText={value => setDay(value)}
             />
             <Text>/</Text>
