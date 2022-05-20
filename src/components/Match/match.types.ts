@@ -1,8 +1,13 @@
 export interface MatchProps {
-  category: string;
-  server: string;
-  day: string;
-  month: string;
-  minute: string;
-  hour: string;
+  category?: string;
+  server?: object;
+  day?: string;
+  month?: string;
+  minute?: string;
+  hour?: string;
+}
+
+export interface MatchDataProps {
+  match?: MatchProps[];
+  onPress?: () => void;
 }

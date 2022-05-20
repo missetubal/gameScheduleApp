@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import {ArrowRight} from '../../assets/arrowRight';
 import Categories from '../../components/Category/category.component';
@@ -25,7 +25,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const NewMatch: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [serverChosen, setServerChosen] = useState(null);
+  const [server, setServer] = useState(null);
   const [day, setDay] = useState('');
   const [month, setMonth] = useState('');
   const [hour, setHour] = useState('');
@@ -46,11 +46,12 @@ const NewMatch: React.FC = () => {
     !description ||
     !month ||
     month > '12' ||
-    !serverChosen;
+    !server;
 
   const onSelectButton = (value: number) => {
     setCategoryType(String(CategoryTipes[value].name));
   };
+
   return (
     <View backgroundColor={'#0c123b'} paddingLeft={24} paddingRight={24}>
       <ModalServer
@@ -65,7 +66,7 @@ const NewMatch: React.FC = () => {
               return (
                 <ServerButton
                   onPress={() => {
-                    setServerChosen(item);
+                    setServer(item);
                     setIsVisible(!isVisible);
                   }}>
                   <ServerComponent
@@ -95,25 +96,21 @@ const NewMatch: React.FC = () => {
       </CategoryList>
       <ServerView onPress={() => setIsVisible(!isVisible)}>
         <IconView>
-          {serverChosen ? (
-            <Image source={{uri: serverChosen.image}} />
-          ) : (
-            <Icon />
-          )}
+          {server ? <Image source={{uri: server.image}} /> : <Icon />}
         </IconView>
         <ServerText>
-          {serverChosen ? (
+          {server ? (
             <Title fontSize={18} textAlign={'left'}>
-              {serverChosen.name}
+              {server.name}
             </Title>
           ) : (
             <Title fontSize={18} textAlign={'left'}>
               Selecione um servidor
             </Title>
           )}
-          {serverChosen ? (
+          {server ? (
             <Text textAlign={'left'} color={colors.gray}>
-              {serverChosen.gameName}
+              {server.gameName}
             </Text>
           ) : (
             <Text> </Text>
@@ -183,16 +180,17 @@ const NewMatch: React.FC = () => {
           marginTop={20}
           width={340}
           disabled={isDisabled}
-          onPress={() =>
-            navigation.navigate('Dashboard', {
+          onPress={() => {
+            const match = {
               category: categoryType,
-              serverChosen: serverChosen,
+              server: server,
               day: day,
               month: month,
               hour: hour,
               minute: minute,
-            })
-          }>
+            };
+            navigation.navigate('Dashboard', {match: match});
+          }}>
           <Title fontSize={18} color={isDisabled ? colors.gray : colors.white}>
             Agendar
           </Title>

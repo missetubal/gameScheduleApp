@@ -41,3 +41,5 @@ export const TextView = styled.View`
   justify-content: space-between;
   margin-bottom: 33px;
 `;
+
+export const MatchView = styled.View``;

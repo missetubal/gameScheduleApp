@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Add} from '../../assets/add';
 import Categories from '../../components/Category/category.component';
 import Match from '../../components/Match/match.component';
@@ -14,11 +14,20 @@ import {
   CategoryList,
   NameTitle,
   TextView,
+  MatchView,
 } from './dash.style';
 
 const Dashboard: React.FC = ({route}) => {
   const navigation = useNavigation();
   const [selectedId, setSelectedId] = useState(null);
+  const [matches, setNewMatches] = useState([]);
+
+  // const unique = [...new Set(matchs as number[])];
+
+  useEffect(() => {
+    setNewMatches(data => [...data, route.params.match]);
+  }, [route.params.match]);
+
   return (
     <View padding={24}>
       <Header>
@@ -53,18 +62,12 @@ const Dashboard: React.FC = ({route}) => {
       <TextView>
         <Title fontSize={18}>Partidas Agendadas</Title>
         <Text>Total:</Text>
+        <Text>{matches.length - 1}</Text>
       </TextView>
-      {route.params.serverChosen ? (
-        <Match
-          server={route.params.serverChosen}
-          category={route.params.category}
-          day={route.params.day}
-          month={route.params.month}
-          minute={route.params.minute}
-          hour={route.params.hour}
-        />
-      ) : (
-        <View />
+      {matches && (
+        <MatchView>
+          <Match match={matches} />
+        </MatchView>
       )}
     </View>
   );
